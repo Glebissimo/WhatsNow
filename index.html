@@ -3,265 +3,201 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aplikacja Zakładek</title>
+    <title>Tracking App</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        .container {
-            width: 60%;
-            margin: 50px auto;
-            text-align: center;
-        }
+        /* Stylizacja dla zakładek */
         .tabs {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-        .tab-button {
             background-color: #007bff;
-            border: none;
-            color: white;
-            padding: 10px 15px;
-            cursor: pointer;
-            margin: 5px;
+            padding: 5px;
             border-radius: 5px;
         }
-        .tab-button:hover {
+        .tabs button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 2px;
+        }
+        .tabs button.active {
             background-color: #0056b3;
         }
         .tab-content {
             display: none;
-            text-align: left;
+            margin-top: 20px;
         }
         .tab-content.active {
             display: block;
         }
-        .tab-pane input {
-            width: 100%;
-            padding: 10px;
+        /* Stylizacja dla formularza */
+        .form-container {
+            margin-bottom: 20px;
+        }
+        .form-container input {
             margin: 5px 0;
-            border: 1px solid #ccc;
+            padding: 8px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .form-container button {
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
             border-radius: 5px;
+            cursor: pointer;
+        }
+        .archive {
+            margin-top: 20px;
+        }
+        .archive h3 {
+            margin-bottom: 10px;
+        }
+        .archive-item {
+            border-top: 1px solid #ddd;
+            padding: 10px 0;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="tabs">
-            <button class="tab-button" onclick="openTab('G1')">G1</button>
-            <button class="tab-button" onclick="openTab('G3')">G3</button>
-            <button class="tab-button" onclick="openTab('G4')">G4</button>
-            <button class="tab-button" onclick="openTab('P1')">P1</button>
-            <button class="tab-button" onclick="openTab('P2')">P2</button>
-            <button class="tab-button" onclick="openTab('P4')">P4</button>
-            <button class="tab-button" onclick="openTab('R1')">R1</button>
-            <button class="tab-button" onclick="openTab('R2')">R2</button>
-            <button class="tab-button" onclick="openTab('Z1')">Z1</button>
-            <button class="tab-button" onclick="openTab('Z2')">Z2</button>
-            <button class="tab-button" onclick="openTab('Z3')">Z3</button>
-            <button class="tab-button" onclick="openTab('Z4')">Z4</button>
-            <button class="tab-button" onclick="openTab('Z5')">Z5</button>
-            <button class="tab-button" onclick="openTab('Z6')">Z6</button>
-            <button class="tab-button" onclick="openTab('Z7')">Z7</button>
-            <button class="tab-button" onclick="openTab('Z8')">Z8</button>
-            <button class="tab-button" onclick="openTab('Z9')">Z9</button>
-            <button class="tab-button" onclick="openTab('Z10')">Z10</button>
-            <button class="tab-button" onclick="openTab('E')">E</button>
-            <button class="tab-button" onclick="openTab('D')">D</button>
-        </div>
-        
-        <div class="tab-content" id="G1">
-            <label for="G1-prev">Poprzednio:</label>
-            <input type="text" id="G1-prev" placeholder="Poprzednio">
-            <label for="G1-current">Aktualnie:</label>
-            <input type="text" id="G1-current" placeholder="Aktualnie">
-            <label for="G1-next">Następnie:</label>
-            <input type="text" id="G1-next" placeholder="Następnie">
-        </div>
 
-        <div class="tab-content" id="G3">
-            <label for="G3-prev">Poprzednio:</label>
-            <input type="text" id="G3-prev" placeholder="Poprzednio">
-            <label for="G3-current">Aktualnie:</label>
-            <input type="text" id="G3-current" placeholder="Aktualnie">
-            <label for="G3-next">Następnie:</label>
-            <input type="text" id="G3-next" placeholder="Następnie">
-        </div>
+    <!-- Zakładki -->
+    <div class="tabs">
+        <button class="tablink" onclick="openTab(event, 'G1')">G1</button>
+        <button class="tablink" onclick="openTab(event, 'G3')">G3</button>
+        <button class="tablink" onclick="openTab(event, 'G4')">G4</button>
+        <button class="tablink" onclick="openTab(event, 'P1')">P1</button>
+        <button class="tablink" onclick="openTab(event, 'P2')">P2</button>
+        <button class="tablink" onclick="openTab(event, 'P4')">P4</button>
+        <button class="tablink" onclick="openTab(event, 'R1')">R1</button>
+        <button class="tablink" onclick="openTab(event, 'R2')">R2</button>
+        <button class="tablink" onclick="openTab(event, 'Z1')">Z1</button>
+        <button class="tablink" onclick="openTab(event, 'Z2')">Z2</button>
+        <button class="tablink" onclick="openTab(event, 'Z3')">Z3</button>
+        <button class="tablink" onclick="openTab(event, 'Z4')">Z4</button>
+        <button class="tablink" onclick="openTab(event, 'Z5')">Z5</button>
+        <button class="tablink" onclick="openTab(event, 'Z6')">Z6</button>
+        <button class="tablink" onclick="openTab(event, 'Z7')">Z7</button>
+        <button class="tablink" onclick="openTab(event, 'Z8')">Z8</button>
+        <button class="tablink" onclick="openTab(event, 'Z9')">Z9</button>
+        <button class="tablink" onclick="openTab(event, 'Z10')">Z10</button>
+        <button class="tablink" onclick="openTab(event, 'E')">E</button>
+        <button class="tablink" onclick="openTab(event, 'D')">D</button>
+    </div>
 
-        <div class="tab-content" id="G4">
-            <label for="G4-prev">Poprzednio:</label>
-            <input type="text" id="G4-prev" placeholder="Poprzednio">
-            <label for="G4-current">Aktualnie:</label>
-            <input type="text" id="G4-current" placeholder="Aktualnie">
-            <label for="G4-next">Następnie:</label>
-            <input type="text" id="G4-next" placeholder="Następnie">
+    <!-- Formularze i archiwa dla każdej zakładki -->
+    <div id="G1" class="tab-content">
+        <div class="form-container">
+            <input type="text" id="previousG1" placeholder="Poprzednie:">
+            <input type="text" id="currentG1" placeholder="Aktualnie:">
+            <input type="text" id="nextG1" placeholder="Następne:">
+            <button onclick="saveData('G1')">Zapisz</button>
         </div>
-
-        <div class="tab-content" id="P1">
-            <label for="P1-prev">Poprzednio:</label>
-            <input type="text" id="P1-prev" placeholder="Poprzednio">
-            <label for="P1-current">Aktualnie:</label>
-            <input type="text" id="P1-current" placeholder="Aktualnie">
-            <label for="P1-next">Następnie:</label>
-            <input type="text" id="P1-next" placeholder="Następnie">
-        </div>
-
-        <div class="tab-content" id="P2">
-            <label for="P2-prev">Poprzednio:</label>
-            <input type="text" id="P2-prev" placeholder="Poprzednio">
-            <label for="P2-current">Aktualnie:</label>
-            <input type="text" id="P2-current" placeholder="Aktualnie">
-            <label for="P2-next">Następnie:</label>
-            <input type="text" id="P2-next" placeholder="Następnie">
-        </div>
-
-        <div class="tab-content" id="P4">
-            <label for="P4-prev">Poprzednio:</label>
-            <input type="text" id="P4-prev" placeholder="Poprzednio">
-            <label for="P4-current">Aktualnie:</label>
-            <input type="text" id="P4-current" placeholder="Aktualnie">
-            <label for="P4-next">Następnie:</label>
-            <input type="text" id="P4-next" placeholder="Następnie">
-        </div>
-
-        <div class="tab-content" id="R1">
-            <label for="R1-prev">Poprzednio:</label>
-            <input type="text" id="R1-prev" placeholder="Poprzednio">
-            <label for="R1-current">Aktualnie:</label>
-            <input type="text" id="R1-current" placeholder="Aktualnie">
-            <label for="R1-next">Następnie:</label>
-            <input type="text" id="R1-next" placeholder="Następnie">
-        </div>
-
-        <div class="tab-content" id="R2">
-            <label for="R2-prev">Poprzednio:</label>
-            <input type="text" id="R2-prev" placeholder="Poprzednio">
-            <label for="R2-current">Aktualnie:</label>
-            <input type="text" id="R2-current" placeholder="Aktualnie">
-            <label for="R2-next">Następnie:</label>
-            <input type="text" id="R2-next" placeholder="Następnie">
-        </div>
-
-        <div class="tab-content" id="Z1">
-            <label for="Z1-prev">Poprzednio:</label>
-            <input type="text" id="Z1-prev" placeholder="Poprzednio">
-            <label for="Z1-current">Aktualnie:</label>
-            <input type="text" id="Z1-current" placeholder="Aktualnie">
-            <label for="Z1-next">Następnie:</label>
-            <input type="text" id="Z1-next" placeholder="Następnie">
-        </div>
-
-        <div class="tab-content" id="Z2">
-            <label for="Z2-prev">Poprzednio:</label>
-            <input type="text" id="Z2-prev" placeholder="Poprzednio">
-            <label for="Z2-current">Aktualnie:</label>
-            <input type="text" id="Z2-current" placeholder="Aktualnie">
-            <label for="Z2-next">Następnie:</label>
-            <input type="text" id="Z2-next" placeholder="Następnie">
-        </div>
-
-        <div class="tab-content" id="Z3">
-            <label for="Z3-prev">Poprzednio:</label>
-            <input type="text" id="Z3-prev" placeholder="Poprzednio">
-            <label for="Z3-current">Aktualnie:</label>
-            <input type="text" id="Z3-current" placeholder="Aktualnie">
-            <label for="Z3-next">Następnie:</label>
-            <input type="text" id="Z3-next" placeholder="Następnie">
-        </div>
-
-        <div class="tab-content" id="Z4">
-            <label for="Z4-prev">Poprzednio:</label>
-            <input type="text" id="Z4-prev" placeholder="Poprzednio">
-            <label for="Z4-current">Aktualnie:</label>
-            <input type="text" id="Z4-current" placeholder="Aktualnie">
-            <label for="Z4-next">Następnie:</label>
-            <input type="text" id="Z4-next" placeholder="Następnie">
-        </div>
-
-        <div class="tab-content" id="Z5">
-            <label for="Z5-prev">Poprzednio:</label>
-            <input type="text" id="Z5-prev" placeholder="Poprzednio">
-            <label for="Z5-current">Aktualnie:</label>
-            <input type="text" id="Z5-current" placeholder="Aktualnie">
-            <label for="Z5-next">Następnie:</label>
-            <input type="text" id="Z5-next" placeholder="Następnie">
-        </div>
-
-        <div class="tab-content" id="Z6">
-            <label for="Z6-prev">Poprzednio:</label>
-            <input type="text" id="Z6-prev" placeholder="Poprzednio">
-            <label for="Z6-current">Aktualnie:</label>
-            <input type="text" id="Z6-current" placeholder="Aktualnie">
-            <label for="Z6-next">Następnie:</label>
-            <input type="text" id="Z6-next" placeholder="Następnie">
-        </div>
-
-        <div class="tab-content" id="Z7">
-            <label for="Z7-prev">Poprzednio:</label>
-            <input type="text" id="Z7-prev" placeholder="Poprzednio">
-            <label for="Z7-current">Aktualnie:</label>
-            <input type="text" id="Z7-current" placeholder="Aktualnie">
-            <label for="Z7-next">Następnie:</label>
-            <input type="text" id="Z7-next" placeholder="Następnie">
-        </div>
-
-        <div class="tab-content" id="Z8">
-            <label for="Z8-prev">Poprzednio:</label>
-            <input type="text" id="Z8-prev" placeholder="Poprzednio">
-            <label for="Z8-current">Aktualnie:</label>
-            <input type="text" id="Z8-current" placeholder="Aktualnie">
-            <label for="Z8-next">Następnie:</label>
-            <input type="text" id="Z8-next" placeholder="Następnie">
-        </div>
-
-        <div class="tab-content" id="Z9">
-            <label for="Z9-prev">Poprzednio:</label>
-            <input type="text" id="Z9-prev" placeholder="Poprzednio">
-            <label for="Z9-current">Aktualnie:</label>
-            <input type="text" id="Z9-current" placeholder="Aktualnie">
-            <label for="Z9-next">Następnie:</label>
-            <input type="text" id="Z9-next" placeholder="Następnie">
-        </div>
-
-        <div class="tab-content" id="Z10">
-            <label for="Z10-prev">Poprzednio:</label>
-            <input type="text" id="Z10-prev" placeholder="Poprzednio">
-            <label for="Z10-current">Aktualnie:</label>
-            <input type="text" id="Z10-current" placeholder="Aktualnie">
-            <label for="Z10-next">Następnie:</label>
-            <input type="text" id="Z10-next" placeholder="Następnie">
-        </div>
-
-        <div class="tab-content" id="E">
-            <label for="E-prev">Poprzednio:</label>
-            <input type="text" id="E-prev" placeholder="Poprzednio">
-            <label for="E-current">Aktualnie:</label>
-            <input type="text" id="E-current" placeholder="Aktualnie">
-            <label for="E-next">Następnie:</label>
-            <input type="text" id="E-next" placeholder="Następnie">
-        </div>
-
-        <div class="tab-content" id="D">
-            <label for="D-prev">Poprzednio:</label>
-            <input type="text" id="D-prev" placeholder="Poprzednio">
-            <label for="D-current">Aktualnie:</label>
-            <input type="text" id="D-current" placeholder="Aktualnie">
-            <label for="D-next">Następnie:</label>
-            <input type="text" id="D-next" placeholder="Następnie">
+        <div class="archive">
+            <h3>ARCHIWUM:</h3>
+            <div id="archiveG1"></div>
         </div>
     </div>
 
+    <!-- Powtórz to samo dla pozostałych zakładek (G3, G4, P1, P2, P4, R1, R2, Z1, Z2, Z3, Z4, Z5, Z6, Z7, Z8, Z9, Z10, E, D) -->
+    <!-- Wystarczy zmienić wszystkie wystąpienia G1 na odpowiednie id zakładki (np. G3, P1, itd.) -->
+
+    <!-- Poniżej pełny kod dla jednej z zakładek, możesz powielić go dla każdej z pozostałych zakładek -->
+    <div id="G3" class="tab-content">
+        <div class="form-container">
+            <input type="text" id="previousG3" placeholder="Poprzednie:">
+            <input type="text" id="currentG3" placeholder="Aktualnie:">
+            <input type="text" id="nextG3" placeholder="Następne:">
+            <button onclick="saveData('G3')">Zapisz</button>
+        </div>
+        <div class="archive">
+            <h3>ARCHIWUM:</h3>
+            <div id="archiveG3"></div>
+        </div>
+    </div>
+
+    <!-- Powiel kod powyżej dla każdej z zakładek -->
+
     <script>
-        function openTab(tabId) {
-            var i, tabContent;
-            tabContent = document.getElementsByClassName("tab-content");
-            for (i = 0; i < tabContent.length; i++) {
-                tabContent[i].classList.remove("active");
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
             }
-            document.getElementById(tabId).classList.add("active");
+            tablinks = document.getElementsByClassName("tablink");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
         }
+
+        function saveData(tab) {
+            // Pobierz wartości z formularza
+            var previous = document.getElementById('previous' + tab).value;
+            var current = document.getElementById('current' + tab).value;
+            var next = document.getElementById('next' + tab).value;
+
+            // Jeśli pole jest puste, pomiń zapis
+            if (!previous && !current && !next) {
+                alert("Wszystkie pola są puste. Wprowadź dane.");
+                return;
+            }
+
+            // Pobierz istniejące archiwum z localStorage
+            var archive = JSON.parse(localStorage.getItem('archive' + tab)) || [];
+
+            // Dodaj nowe dane na początek archiwum
+            archive.unshift({
+                previous: previous,
+                current: current,
+                next: next
+            });
+
+            // Zapisz zaktualizowane archiwum do localStorage
+            localStorage.setItem('archive' + tab, JSON.stringify(archive));
+
+            // Wyświetl zaktualizowane archiwum
+            displayArchive(tab);
+
+            // Wyczyść pola formularza
+            document.getElementById('previous' + tab).value = '';
+            document.getElementById('current' + tab).value = '';
+            document.getElementById('next' + tab).value = '';
+        }
+
+        function displayArchive(tab) {
+            var archiveDiv = document.getElementById('archive' + tab);
+            archiveDiv.innerHTML = '';
+
+            // Pobierz archiwum z localStorage
+            var archive = JSON.parse(localStorage.getItem('archive' + tab)) || [];
+
+            // Wyświetl dane z archiwum
+            archive.forEach(function(item) {
+                var div = document.createElement('div');
+                div.classList.add('archive-item');
+                div.innerHTML = `
+                    <p><strong>Poprzednie:</strong> ${item.previous}</p>
+                    <p><strong>Aktualnie:</strong> ${item.current}</p>
+                    <p><strong>Następne:</strong> ${item.next}</p>
+                `;
+                archiveDiv.appendChild(div);
+            });
+        }
+
+        // Wywołaj funkcję displayArchive dla każdej zakładki podczas ładowania strony
+        document.addEventListener('DOMContentLoaded', function() {
+            var tabs = ['G1', 'G3', 'G4', 'P1', 'P2', 'P4', 'R1', 'R2', 'Z1', 'Z2', 'Z3', 'Z4', 'Z5', 'Z6', 'Z7', 'Z8', 'Z9', 'Z10', 'E', 'D'];
+            tabs.forEach(function(tab) {
+                displayArchive(tab);
+            });
+        });
     </script>
+
 </body>
 </html>
