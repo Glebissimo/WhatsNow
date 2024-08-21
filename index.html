@@ -106,85 +106,201 @@
         </div>
     </div>
 
+    <div id="G3" class="tab-content">
+        <div class="form-container">
+            <input type="text" id="previousG3" placeholder="Poprzednie:">
+            <input type="text" id="currentG3" placeholder="Aktualnie:">
+            <input type="text" id="nextG3" placeholder="Następne:">
+            <button onclick="saveData('G3')">Zapisz</button>
+        </div>
+        <div class="new-entry">
+            <h3>NOWE:</h3>
+            <div id="newG3" class="new-item"></div>
+        </div>
+        <div class="archive">
+            <h3>ARCHIWUM:</h3>
+            <div id="archiveG3"></div>
+        </div>
+    </div>
+
     <!-- Powtórz to samo dla pozostałych zakładek -->
 
+    <div id="G4" class="tab-content">
+        <div class="form-container">
+            <input type="text" id="previousG4" placeholder="Poprzednie:">
+            <input type="text" id="currentG4" placeholder="Aktualnie:">
+            <input type="text" id="nextG4" placeholder="Następne:">
+            <button onclick="saveData('G4')">Zapisz</button>
+        </div>
+        <div class="new-entry">
+            <h3>NOWE:</h3>
+            <div id="newG4" class="new-item"></div>
+        </div>
+        <div class="archive">
+            <h3>ARCHIWUM:</h3>
+            <div id="archiveG4"></div>
+        </div>
+    </div>
+
+    <div id="P1" class="tab-content">
+        <div class="form-container">
+            <input type="text" id="previousP1" placeholder="Poprzednie:">
+            <input type="text" id="currentP1" placeholder="Aktualnie:">
+            <input type="text" id="nextP1" placeholder="Następne:">
+            <button onclick="saveData('P1')">Zapisz</button>
+        </div>
+        <div class="new-entry">
+            <h3>NOWE:</h3>
+            <div id="newP1" class="new-item"></div>
+        </div>
+        <div class="archive">
+            <h3>ARCHIWUM:</h3>
+            <div id="archiveP1"></div>
+        </div>
+    </div>
+
+    <div id="P2" class="tab-content">
+        <div class="form-container">
+            <input type="text" id="previousP2" placeholder="Poprzednie:">
+            <input type="text" id="currentP2" placeholder="Aktualnie:">
+            <input type="text" id="nextP2" placeholder="Następne:">
+            <button onclick="saveData('P2')">Zapisz</button>
+        </div>
+        <div class="new-entry">
+            <h3>NOWE:</h3>
+            <div id="newP2" class="new-item"></div>
+        </div>
+        <div class="archive">
+            <h3>ARCHIWUM:</h3>
+            <div id="archiveP2"></div>
+        </div>
+    </div>
+
+    <div id="P4" class="tab-content">
+        <div class="form-container">
+            <input type="text" id="previousP4" placeholder="Poprzednie:">
+            <input type="text" id="currentP4" placeholder="Aktualnie:">
+            <input type="text" id="nextP4" placeholder="Następne:">
+            <button onclick="saveData('P4')">Zapisz</button>
+        </div>
+        <div class="new-entry">
+            <h3>NOWE:</h3>
+            <div id="newP4" class="new-item"></div>
+        </div>
+        <div class="archive">
+            <h3>ARCHIWUM:</h3>
+            <div id="archiveP4"></div>
+        </div>
+    </div>
+
+    <!-- Pozostałe zakładki również mogą zostać dodane w ten sam sposób -->
+
+    <div id="R1" class="tab-content">
+        <div class="form-container">
+            <input type="text" id="previousR1" placeholder="Poprzednie:">
+            <input type="text" id="currentR1" placeholder="Aktualnie:">
+            <input type="text" id="nextR1" placeholder="Następne:">
+            <button onclick="saveData('R1')">Zapisz</button>
+        </div>
+        <div class="new-entry">
+            <h3>NOWE:</h3>
+            <div id="newR1" class="new-item"></div>
+        </div>
+        <div class="archive">
+            <h3>ARCHIWUM:</h3>
+            <div id="archiveR1"></div>
+        </div>
+    </div>
+
+    <div id="R2" class="tab-content">
+        <div class="form-container">
+            <input type="text" id="previousR2" placeholder="Poprzednie:">
+            <input type="text" id="currentR2" placeholder="Aktualnie:">
+            <input type="text" id="nextR2" placeholder="Następne:">
+            <button onclick="saveData('R2')">Zapisz</button>
+        </div>
+        <div class="new-entry">
+            <h3>NOWE:</h3>
+            <div id="newR2" class="new-item"></div>
+        </div>
+        <div class="archive">
+            <h3>ARCHIWUM:</h3>
+            <div id="archiveR2"></div>
+        </div>
+    </div>
+
+    <div id="Z1" class="tab-content">
+        <div class="form-container">
+            <input type="text" id="previousZ1" placeholder="Poprzednie:">
+            <input type="text" id="currentZ1" placeholder="Aktualnie:">
+            <input type="text" id="nextZ1" placeholder="Następne:">
+            <button onclick="saveData('Z1')">Zapisz</button>
+        </div>
+        <div class="new-entry">
+            <h3>NOWE:</h3>
+            <div id="newZ1" class="new-item"></div>
+        </div>
+        <div class="archive">
+            <h3>ARCHIWUM:</h3>
+            <div id="archiveZ1"></div>
+        </div>
+    </div>
+
+    <!-- Dodajemy więcej zakładek... -->
+
+    <!-- Kod JavaScript do obsługi zakładek i zapisywania danych -->
     <script>
-        function openTab(evt, tabName) {
+        function openTab(event, tabName) {
             var i, tabcontent, tablinks;
             tabcontent = document.getElementsByClassName("tab-content");
             for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].classList.remove("active");
+                tabcontent[i].style.display = "none";
             }
             tablinks = document.getElementsByClassName("tablink");
             for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].classList.remove("active");
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
             }
-            document.getElementById(tabName).classList.add("active");
-            evt.currentTarget.classList.add("active");
+            document.getElementById(tabName).style.display = "block";
+            event.currentTarget.className += " active";
         }
 
         function saveData(tab) {
-            // Pobierz wartości z formularza
             var previous = document.getElementById('previous' + tab).value;
             var current = document.getElementById('current' + tab).value;
             var next = document.getElementById('next' + tab).value;
 
-            // Jeśli pole jest puste, pomiń zapis
-            if (!previous && !current && !next) {
-                alert("Wszystkie pola są puste. Wprowadź dane.");
-                return;
-            }
-
-            // Pobierz istniejące archiwum i najnowsze dane z localStorage
-            var archive = JSON.parse(localStorage.getItem('archive' + tab)) || [];
-            var latest = JSON.parse(localStorage.getItem('new' + tab)) || null;
-
-            // Jeśli istnieją najnowsze dane, przenieś je do archiwum
-            if (latest) {
-                archive.unshift(latest);
-            }
-
-            // Zapisz nowe dane jako najnowsze
-            var timestamp = new Date().toLocaleString();
-            var newData = {
+            var time = new Date().toLocaleString();
+            var data = {
                 previous: previous,
                 current: current,
                 next: next,
-                time: timestamp
+                time: time
             };
 
-            localStorage.setItem('new' + tab, JSON.stringify(newData));
+            var savedData = JSON.parse(localStorage.getItem(tab)) || [];
+            if (savedData.length > 0) {
+                savedData.push(savedData[0]); // Przeniesienie bieżących danych do archiwum
+            }
+            savedData[0] = data; // Nowe dane na górze
+            localStorage.setItem(tab, JSON.stringify(savedData));
 
-            // Zapisz zaktualizowane archiwum do localStorage
-            localStorage.setItem('archive' + tab, JSON.stringify(archive));
-
-            // Wyświetl zaktualizowane dane
             displayNew(tab);
             displayArchive(tab);
-
-            // Wyczyść pola formularza
-            document.getElementById('previous' + tab).value = '';
-            document.getElementById('current' + tab).value = '';
-            document.getElementById('next' + tab).value = '';
         }
 
         function displayNew(tab) {
             var newDiv = document.getElementById('new' + tab);
             newDiv.innerHTML = '';
 
-            // Pobierz najnowsze dane z localStorage
-            var latest = JSON.parse(localStorage.getItem('new' + tab)) || null;
-
-            // Wyświetl najnowsze dane
-            if (latest) {
-                var div = document.createElement('div');
-                div.innerHTML = `
-                    <p><strong>Poprzednie:</strong> ${latest.previous}</p>
-                    <p><strong>Aktualnie:</strong> ${latest.current}</p>
-                    <p><strong>Następne:</strong> ${latest.next}</p>
-                    <p><strong>Data:</strong> ${latest.time}</p>
+            var savedData = JSON.parse(localStorage.getItem(tab)) || [];
+            if (savedData.length > 0) {
+                var item = savedData[0];
+                newDiv.innerHTML = `
+                    <p><strong>Poprzednie:</strong> ${item.previous}</p>
+                    <p><strong>Aktualnie:</strong> ${item.current}</p>
+                    <p><strong>Następne:</strong> ${item.next}</p>
+                    <p><strong>Data:</strong> ${item.time}</p>
                 `;
-                newDiv.appendChild(div);
             }
         }
 
@@ -192,13 +308,10 @@
             var archiveDiv = document.getElementById('archive' + tab);
             archiveDiv.innerHTML = '';
 
-            // Pobierz archiwum z localStorage
-            var archive = JSON.parse(localStorage.getItem('archive' + tab)) || [];
-
-            // Wyświetl dane z archiwum
-            archive.forEach(function(item) {
+            var savedData = JSON.parse(localStorage.getItem(tab)) || [];
+            savedData.slice(1).forEach(function(item) { // Pomiń pierwszy element (najnowsze dane)
                 var div = document.createElement('div');
-                div.classList.add('archive-item');
+                div.className = 'archive-item';
                 div.innerHTML = `
                     <p><strong>Poprzednie:</strong> ${item.previous}</p>
                     <p><strong>Aktualnie:</strong> ${item.current}</p>
