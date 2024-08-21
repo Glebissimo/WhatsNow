@@ -50,13 +50,13 @@
             border-radius: 5px;
             cursor: pointer;
         }
-        .archive {
+        .archive, .new-entry {
             margin-top: 20px;
         }
-        .archive h3 {
+        .archive h3, .new-entry h3 {
             margin-bottom: 10px;
         }
-        .archive-item {
+        .archive-item, .new-item {
             border-top: 1px solid #ddd;
             padding: 10px 0;
         }
@@ -96,30 +96,17 @@
             <input type="text" id="nextG1" placeholder="Następne:">
             <button onclick="saveData('G1')">Zapisz</button>
         </div>
+        <div class="new-entry">
+            <h3>NOWE:</h3>
+            <div id="newG1" class="new-item"></div>
+        </div>
         <div class="archive">
             <h3>ARCHIWUM:</h3>
             <div id="archiveG1"></div>
         </div>
     </div>
 
-    <!-- Powtórz to samo dla pozostałych zakładek (G3, G4, P1, P2, P4, R1, R2, Z1, Z2, Z3, Z4, Z5, Z6, Z7, Z8, Z9, Z10, E, D) -->
-    <!-- Wystarczy zmienić wszystkie wystąpienia G1 na odpowiednie id zakładki (np. G3, P1, itd.) -->
-
-    <!-- Poniżej pełny kod dla jednej z zakładek, możesz powielić go dla każdej z pozostałych zakładek -->
-    <div id="G3" class="tab-content">
-        <div class="form-container">
-            <input type="text" id="previousG3" placeholder="Poprzednie:">
-            <input type="text" id="currentG3" placeholder="Aktualnie:">
-            <input type="text" id="nextG3" placeholder="Następne:">
-            <button onclick="saveData('G3')">Zapisz</button>
-        </div>
-        <div class="archive">
-            <h3>ARCHIWUM:</h3>
-            <div id="archiveG3"></div>
-        </div>
-    </div>
-
-    <!-- Powiel kod powyżej dla każdej z zakładek -->
+    <!-- Powtórz to samo dla pozostałych zakładek -->
 
     <script>
         function openTab(evt, tabName) {
@@ -148,26 +135,57 @@
                 return;
             }
 
-            // Pobierz istniejące archiwum z localStorage
+            // Pobierz istniejące archiwum i najnowsze dane z localStorage
             var archive = JSON.parse(localStorage.getItem('archive' + tab)) || [];
+            var latest = JSON.parse(localStorage.getItem('new' + tab)) || null;
 
-            // Dodaj nowe dane na początek archiwum
-            archive.unshift({
+            // Jeśli istnieją najnowsze dane, przenieś je do archiwum
+            if (latest) {
+                archive.unshift(latest);
+            }
+
+            // Zapisz nowe dane jako najnowsze
+            var timestamp = new Date().toLocaleString();
+            var newData = {
                 previous: previous,
                 current: current,
-                next: next
-            });
+                next: next,
+                time: timestamp
+            };
+
+            localStorage.setItem('new' + tab, JSON.stringify(newData));
 
             // Zapisz zaktualizowane archiwum do localStorage
             localStorage.setItem('archive' + tab, JSON.stringify(archive));
 
-            // Wyświetl zaktualizowane archiwum
+            // Wyświetl zaktualizowane dane
+            displayNew(tab);
             displayArchive(tab);
 
             // Wyczyść pola formularza
             document.getElementById('previous' + tab).value = '';
             document.getElementById('current' + tab).value = '';
             document.getElementById('next' + tab).value = '';
+        }
+
+        function displayNew(tab) {
+            var newDiv = document.getElementById('new' + tab);
+            newDiv.innerHTML = '';
+
+            // Pobierz najnowsze dane z localStorage
+            var latest = JSON.parse(localStorage.getItem('new' + tab)) || null;
+
+            // Wyświetl najnowsze dane
+            if (latest) {
+                var div = document.createElement('div');
+                div.innerHTML = `
+                    <p><strong>Poprzednie:</strong> ${latest.previous}</p>
+                    <p><strong>Aktualnie:</strong> ${latest.current}</p>
+                    <p><strong>Następne:</strong> ${latest.next}</p>
+                    <p><strong>Data:</strong> ${latest.time}</p>
+                `;
+                newDiv.appendChild(div);
+            }
         }
 
         function displayArchive(tab) {
@@ -185,15 +203,17 @@
                     <p><strong>Poprzednie:</strong> ${item.previous}</p>
                     <p><strong>Aktualnie:</strong> ${item.current}</p>
                     <p><strong>Następne:</strong> ${item.next}</p>
+                    <p><strong>Data:</strong> ${item.time}</p>
                 `;
                 archiveDiv.appendChild(div);
             });
         }
 
-        // Wywołaj funkcję displayArchive dla każdej zakładki podczas ładowania strony
+        // Wywołaj funkcje displayNew i displayArchive dla każdej zakładki podczas ładowania strony
         document.addEventListener('DOMContentLoaded', function() {
             var tabs = ['G1', 'G3', 'G4', 'P1', 'P2', 'P4', 'R1', 'R2', 'Z1', 'Z2', 'Z3', 'Z4', 'Z5', 'Z6', 'Z7', 'Z8', 'Z9', 'Z10', 'E', 'D'];
             tabs.forEach(function(tab) {
+                displayNew(tab);
                 displayArchive(tab);
             });
         });
